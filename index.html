@@ -17,5 +17,21 @@
     ></script>
     <link rel="stylesheet" href="./style.css" />
   </head>
-  <body></body>
+  <body onload="brython()">
+    <h1>Brython Crash Course / Testing</h1>
+    <h2 id="hello"></h2>
+    <button id="alert-btn">Alert & Insert</button>
+
+    <!-- Console Log, Alert, Insert Text  -->
+    <script type="text/python" id="script0">
+      from browser import document, console, alert
+
+      def show(e):
+        console.log('Hello');
+        alert('Hello World');
+        document['hello'] <= 'Hello World';
+
+      document['alert-btn'].bind('click', show)
+    </script>
+  </body>
 </html>
