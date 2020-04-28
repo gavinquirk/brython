@@ -22,6 +22,9 @@
     <h2 id="hello"></h2>
     <button id="alert-btn">Alert & Insert</button>
 
+    <input type="text" id="text" placeholder="Enter Something" />
+    <span id="output"></span>
+
     <!-- Console Log, Alert, Insert Text  -->
     <script type="text/python" id="script0">
       from browser import document, console, alert
@@ -32,6 +35,16 @@
         document['hello'] <= 'Hello World';
 
       document['alert-btn'].bind('click', show)
+    </script>
+
+    <!-- Text Binding -->
+    <script type="text/python" id="script1">
+      from browser import document
+
+      def show_text(e):
+        document['output'].textContent = e.target.value;
+
+      document['text'].bind('input', show_text)
     </script>
   </body>
 </html>
