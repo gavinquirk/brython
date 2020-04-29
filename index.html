@@ -30,6 +30,10 @@
     <button id="joke-btn">Get Joke</button>
     <div id="joke" class="card">Click the "get joke" button</div>
 
+    <input type="file" id="file-upload" />
+    <br />
+    <textarea id="file-text" cols="60" rows="10"></textarea>
+
     <!-- Console Log, Alert, Insert Text  -->
     <script type="text/python" id="script0">
       from browser import document, console, alert
@@ -79,6 +83,22 @@
         req.send()
 
       document['joke-btn'].bind('click', get_joke)
+    </script>
+
+    <!-- Load File Data -->
+    <script type="text/python" id="script4">
+      from browser import document, window
+
+      def file_read(e):
+        def onload(e):
+          document['file-text'].value = e.target.result
+
+        file = document['file-upload'].files[0]
+        reader = window.FileReader.new()
+        reader.readAsText(file)
+        reader.bind('load', onload)
+
+      document['file-upload'].bind('input', file_read)
     </script>
   </body>
 </html>
