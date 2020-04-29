@@ -39,6 +39,11 @@
       <div class="box" id="rotate-box"></div>
     </div>
 
+    <h2>Saved Item: <span id="item"></span></h2>
+    <input type="text" id="item-input" placeholder="Add to local storage" />
+    <button id="add-btn" style="display: inline;">Add</button>
+    <button id="remove-btn" style="display: inline;">Remove</button>
+
     <!-- Console Log, Alert, Insert Text  -->
     <script type="text/python" id="script0">
       from browser import document, console, alert
@@ -119,6 +124,28 @@
         angle += 10
 
       document['rotate-btn'].bind('click', change)
+    </script>
+
+    <!-- Local Storage -->
+    <script type="text/python" id="script6">
+      from browser import document, html, window, console
+
+      storage = window.localStorage
+
+      if storage.getItem('item'):
+        document['item'] <= storage.getItem('item')
+
+      def add_item(e):
+        item = document['item-input'].value
+        storage.setItem('item', item)
+        document['item'].textContent = item
+
+      def remove_item(e):
+        storage.removeItem('item')
+        document['item'].textContent = ''
+
+      document['add-btn'].bind('click', add_item)
+      document['remove-btn'].bind('click', remove_item)
     </script>
   </body>
 </html>
