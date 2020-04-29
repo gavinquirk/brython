@@ -34,6 +34,11 @@
     <br />
     <textarea id="file-text" cols="60" rows="10"></textarea>
 
+    <div class="card">
+      <button id="rotate-btn">Rotate</button>
+      <div class="box" id="rotate-box"></div>
+    </div>
+
     <!-- Console Log, Alert, Insert Text  -->
     <script type="text/python" id="script0">
       from browser import document, console, alert
@@ -99,6 +104,21 @@
         reader.bind('load', onload)
 
       document['file-upload'].bind('input', file_read)
+    </script>
+
+    <!-- Rotate Box - Transform -->
+    <script type="text/python" id="script5">
+      from browser import document, html
+
+      box = document['rotate-box']
+      angle = 10
+
+      def change(e):
+        global angle
+        box.style.transform = f"rotate({angle}deg)"
+        angle += 10
+
+      document['rotate-btn'].bind('click', change)
     </script>
   </body>
 </html>
